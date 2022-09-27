@@ -13,9 +13,16 @@ public class Agent : MonoBehaviour
 {
     private FiniteStateMachine _FSM;
     public GameObject[] allWaypoints;
+    int _currentWP = 0;
     public float speed = 5;
     public float energy;
-    public float timeResetEnergy;
+    public float energyMax;
+
+    public int CurrentWp
+    {
+        get { return _currentWP; }
+        set { _currentWP = value; }
+    }
 
     private void Start()
     {
@@ -30,10 +37,6 @@ public class Agent : MonoBehaviour
 
     private void Update()
     {
-        if (energy > 0) energy -= Time.deltaTime;
-        //else energy += Time.deltaTime;
-
-        //if (energy >= timeResetEnergy) energy = timeResetEnergy;
         _FSM.Update();
     }
 

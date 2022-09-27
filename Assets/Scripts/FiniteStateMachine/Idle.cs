@@ -19,14 +19,9 @@ public class Idle : IState
 
     public void OnUpdate()
     {
-        if (_agent.energy <= 0)
-        {
-            Debug.Log("Estoy en Idle");
-        }
-        else
-        {
-            _fsm.ChangeState(AgentStates.Patrol);
-        }
+        Debug.Log("Estoy en Idle");
+        _agent.energy = Mathf.Clamp(_agent.energy += Time.deltaTime, 0, _agent.energyMax);
+        if (_agent.energy == _agent.energyMax) _fsm.ChangeState(AgentStates.Patrol);
     }
 
     public void OnExit()
